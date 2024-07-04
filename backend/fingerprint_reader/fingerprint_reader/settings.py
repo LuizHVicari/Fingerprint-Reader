@@ -5,8 +5,9 @@ import os
 
 load_dotenv()
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+PROOJECT_ROOT = os.path.dirname(__file__)
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
@@ -21,7 +22,27 @@ INSTALLED_APPS = [
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
+  
+	'rest_framework',
+  'rest_framework_simplejwt',
+  
+	'fingerprints',
 ]
+
+REST_FRAMEWORK = {
+	'DEFAULT_PERMISSION_CLASSES': (
+		'rest_framework.permissions.IsAdminUser',
+	),
+  'DEFAULT_AUTHENTICATION_CLASSES': (
+		'rest_framework_simplejwt.authentication.JWTAuthentication',
+		'rest_framework.authentication.SessionAuthentication',
+	),
+  'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.AcceptHeaderVersioning',
+  'DEFAULT_PARSER_CLASSES': (
+		'rest_framework.parsers.JSONParser',
+		'rest_framework.parsers.MultiPartParser',
+	)
+}
 
 MIDDLEWARE = [
 	'django.middleware.security.SecurityMiddleware',
@@ -75,9 +96,9 @@ AUTH_PASSWORD_VALIDATORS = [
 	},
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -85,3 +106,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_ROOT = os.path.join(PROOJECT_ROOT, 'media')
+
+MEDIA_URL = '/media/'
