@@ -1,5 +1,6 @@
 import 'package:digital_reader/controlllers/login_controller.dart';
 import 'package:digital_reader/views/styles/elevated_button_style.dart';
+import 'package:digital_reader/views/styles/important_text_style.dart';
 import 'package:digital_reader/views/widgets/email_input.dart';
 import 'package:digital_reader/views/widgets/password_input.dart';
 import 'package:flutter/material.dart';
@@ -25,11 +26,7 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             Text(
               'Faça login para continuar'.toUpperCase(),
-              style: const TextStyle(
-                color: Colors.teal,
-                fontSize: 20,
-                fontWeight: FontWeight.bold
-              ),
+              style: importantTextStyle(),
             ),
             const SizedBox(height: 20),
             const EmailInput(),

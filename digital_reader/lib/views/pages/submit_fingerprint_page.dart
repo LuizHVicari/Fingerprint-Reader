@@ -1,5 +1,9 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
+import 'package:digital_reader/views/styles/important_text_style.dart';
+import 'package:digital_reader/views/widgets/age_slider.dart';
+import 'package:digital_reader/views/widgets/code_input_row.dart';
+import 'package:digital_reader/views/widgets/submit_fingerprint_button.dart';
 import 'package:digital_reader/views/widgets/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gal/gal.dart';
@@ -15,7 +19,6 @@ class DisplayPicturePage extends StatefulWidget {
 }
 
 class _DisplayPicturePageState extends State<DisplayPicturePage> {
-  double _ageSliderValue = 0.0;
   List<String> ids = ['item 1', 'item 2', 'item 3', 'item 4'];
   String selectedId = '';
   
@@ -53,11 +56,11 @@ class _DisplayPicturePageState extends State<DisplayPicturePage> {
               Image.file(File(widget.image.path)),
               imageNotFitText(),
               ageText(context),
-              ageSlider(),
+              AgeSlider(),
               codeText(context),
-              codeRow(context),
+              const CodeInputRow(),
               const SizedBox(height: 30),
-              submitButton(context),
+              const SubmitFingerprintButton(),
               const SizedBox(height: 20)
             ],
           ),
@@ -95,91 +98,10 @@ class _DisplayPicturePageState extends State<DisplayPicturePage> {
   }
 
   Text imageQualityText() {
-    return const Text(
+    return Text(
       'Por favor, verifique a qualidade da imagem',
       textAlign: TextAlign.center,
-      style: TextStyle(
-        fontSize: 15
-      ),
-    );
-  }
-
-  FloatingActionButton submitButton(BuildContext context) {
-    return FloatingActionButton.extended(
-      backgroundColor: Colors.teal,
-      label: const Text(
-        'Enviar dados',
-        style: TextStyle(
-          color: Colors.white
-        ),),
-      icon: const Icon(Icons.send, color: Colors.white,),
-      onPressed: () {
-        showDialog(
-          context: context,
-          builder: (context) {
-            Future.delayed(const Duration(seconds: 2), () {
-              Navigator.of(context).pop(true);
-            });
-            return const AlertDialog(
-              title: Text(
-                textAlign: TextAlign.center,
-                'Formulário enviado',
-                style: TextStyle(
-                  fontSize: 15,
-                ),),
-            );
-          }
-        ).then((value) {
-          Navigator.pushNamedAndRemoveUntil(context, '/', (Route<dynamic> route) => false);
-        });
-      }
-    );
-  }
-
-  Row codeRow(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        DropdownMenu(
-          hintText: 'Código do bebê',
-          enableFilter: true,
-          enableSearch: true,
-          dropdownMenuEntries: ids.map((map) {
-            return DropdownMenuEntry(
-              value: map,
-              label: map
-            );
-          }).toList()
-        ),
-        const Text('ou'),
-        FloatingActionButton.extended(
-          backgroundColor: Colors.teal.shade500,
-          onPressed: () {
-            Navigator.of(context).pushNamed('/new_baby');
-          }, 
-          label: const Text(
-            'Novo bebê',
-            style: TextStyle(color: Colors.white)
-            ),
-          icon: const Icon(Icons.add, color: Colors.white)
-        ),
-      ],
-    );
-  }
-
-  Slider ageSlider() {
-    return Slider(
-      value: _ageSliderValue, 
-      max: 12,
-      min: 0,
-      label: _ageSliderValue.toInt().toString(),
-      divisions: 12,
-      activeColor: Colors.teal.shade500,
-      onChanged: (double value) {
-        setState(() {
-          _ageSliderValue = value;
-        });
-      }
+      style: importantTextStyle(),
     );
   }
 }

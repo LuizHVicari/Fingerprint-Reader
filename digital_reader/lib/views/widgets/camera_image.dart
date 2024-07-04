@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:digital_reader/views/styles/camera_image_container_style.dart';
 import 'package:flutter/material.dart';
 
 class DisplayCameraImage extends StatefulWidget {
@@ -16,13 +17,7 @@ class _DisplayCameraImageState extends State<DisplayCameraImage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.teal.shade500,
-          width: 3,
-        ),
-        borderRadius: const BorderRadius.all(Radius.circular(23))
-      ),
+      decoration: cameraImageContainerDecoration(),
       height: 450,
       width: 300,
       child: FutureBuilder<void>(

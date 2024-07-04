@@ -21,7 +21,7 @@ class GatherCart extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            SizedBox(
+            const SizedBox(
               child: Icon(
                 Icons.fingerprint, 
                 color: Colors.white,

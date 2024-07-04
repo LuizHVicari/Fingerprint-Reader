@@ -1,4 +1,7 @@
-import 'dart:async';
+import 'package:digital_reader/views/widgets/birth_date_picker.dart';
+import 'package:digital_reader/views/widgets/gender_selection_button.dart';
+import 'package:digital_reader/views/widgets/new_code_input.dart';
+import 'package:digital_reader/views/widgets/register_baby_button.dart';
 import 'package:digital_reader/views/widgets/top_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +15,7 @@ class NewBabyPage extends StatefulWidget {
 class _NewBabyPageState extends State<NewBabyPage> {
   String code = '';
   String gender = 'M';
-  final TextEditingController _dateController = TextEditingController();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -22,142 +25,19 @@ class _NewBabyPageState extends State<NewBabyPage> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.all(8),
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            newCodeTextField(),
-            const SizedBox(height: 20),
-            datePickerTap(),
-            const SizedBox(height: 20,),
-            genderSelectionButton(),
-            const SizedBox(height: 20),
-            sendButton(context)
+            NewCodeInput(),
+            SizedBox(height: 20),
+            BirthDatePicker(),
+            SizedBox(height: 20,),
+            GenderSelectionButton(),
+            SizedBox(height: 20),
+            RegisterBabyButton(),
           ],
         )
       )
-    );
-  }
-
-  FloatingActionButton sendButton(BuildContext context) {
-    return FloatingActionButton.extended(
-      onPressed: () {
-        // TODO enviar para o banco de dados
-
-        Navigator.pop(context);
-      },
-      backgroundColor: Colors.teal,
-      label: const Text(
-        'Registrar bebê',
-        style: TextStyle(
-          color: Colors.white
-        ),  
-      ),
-      icon: const Icon(Icons.add, color: Colors.white),
-      );
-  }
-
-  TextField datePickerTap() {
-    return TextField(
-      controller: _dateController,
-      decoration: const InputDecoration(
-        floatingLabelStyle: TextStyle(
-          color: Colors.teal
-        ),
-        labelText: 'Data de nascimento',
-        filled: true,
-        prefixIcon: Icon(Icons.calendar_today),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide.none
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.teal
-          )
-        )
-      ),
-      readOnly: true,
-      onTap: () {
-        _bornDate();
-      },
-    );
-  }
-
-  Future<void> _bornDate() async {
-    DateTime? date = await showDatePicker(
-      context: context, 
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2020), 
-      lastDate: DateTime.now()
-      );
-
-    if (date != null) {
-      setState(() {
-        _dateController.text = date.toString().split(" ")[0];
-      });
-    }
-  }
-
-  Widget newCodeTextField() {
-    return Container(
-      padding: const EdgeInsets.only(left: 8, right: 8),
-      child: TextField(
-        keyboardType: TextInputType.number,
-        decoration: const InputDecoration(
-          border: OutlineInputBorder(),
-          floatingLabelStyle: TextStyle(
-            color: Colors.teal
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.teal
-            )
-          ),
-          labelText: 'Código do bebê',
-        ),
-        onChanged: (value) {
-          code = value;
-        },
-      ),
-    );
-  }
-
-  SegmentedButton<String> genderSelectionButton() {
-    return SegmentedButton(
-      showSelectedIcon: false,
-      style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.resolveWith<Color>(
-          (Set<WidgetState> states) =>
-            states.contains(WidgetState.selected) ?
-            Colors.teal
-            :
-            Colors.teal.shade50,
-        ),
-        foregroundColor: WidgetStateProperty.resolveWith<Color>(
-          (Set<WidgetState> states) => 
-            states.contains(WidgetState.selected) ?
-            Colors.teal.shade50
-            :
-            Colors.teal.shade900,
-        ),
-      ),
-      segments: const [
-        ButtonSegment(
-          value: 'M',
-          label: Text('Masculino'),
-          icon: Icon(Icons.male_rounded)
-        ),
-        ButtonSegment(
-          value: 'F',
-          label: Text('Feminino'),
-          icon: Icon(Icons.female)
-        )
-      ], 
-      selected: <String>{gender},
-      onSelectionChanged: (value) {
-        setState(() {
-          gender = value.first;
-        });
-      },
     );
   }
 }
