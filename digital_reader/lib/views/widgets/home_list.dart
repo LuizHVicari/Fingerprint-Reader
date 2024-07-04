@@ -12,7 +12,7 @@ class _HomeListState extends State<HomeList> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: const Column(

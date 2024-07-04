@@ -14,21 +14,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Widget> _pages = [
+  final List<Widget> _pages = const [
     HomeList(),
     GathersList(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: TopBar(title: 'Coletor de Digitais'.toUpperCase()),
       body:  AnimatedBuilder(
         animation: CurrentWidgetHomeController.intance,
         builder: (context, child) {
           return 
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: _pages[CurrentWidgetHomeController.intance.currentWidgetIndex],
