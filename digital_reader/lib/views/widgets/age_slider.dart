@@ -1,4 +1,4 @@
-import 'package:digital_reader/controlllers/submit_finger_print_controller.dart';
+import 'package:digital_reader/controllers/submit_finger_print_controller.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

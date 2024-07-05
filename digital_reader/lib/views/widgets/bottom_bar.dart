@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:digital_reader/controlllers/current_widget_home_controller.dart';
+import 'package:digital_reader/controllers/current_widget_home_controller.dart';
 import 'package:flutter/material.dart';
 
 

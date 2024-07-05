@@ -1,4 +1,4 @@
-import 'package:digital_reader/controlllers/new_baby_controller.dart';
+import 'package:digital_reader/controllers/new_baby_controller.dart';
 import 'package:digital_reader/views/styles/input_style.dart';
 import 'package:flutter/material.dart';
 

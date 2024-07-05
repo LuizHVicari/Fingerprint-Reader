@@ -1,4 +1,4 @@
-import 'package:digital_reader/controlllers/login_controller.dart';
+import 'package:digital_reader/controllers/login_controller.dart';
 import 'package:digital_reader/views/styles/elevated_button_style.dart';
 import 'package:digital_reader/views/styles/important_text_style.dart';
 import 'package:digital_reader/views/widgets/email_input.dart';

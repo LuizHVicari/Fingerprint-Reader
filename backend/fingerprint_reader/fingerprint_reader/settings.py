@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = True if os.getenv('DEBUG') == 'True' else False
+DEBUG = True #if os.getenv('DEBUG') == 'True' else False
 
 ALLOWED_HOSTS = []
 
@@ -25,13 +25,15 @@ INSTALLED_APPS = [
   
 	'rest_framework',
   'rest_framework_simplejwt',
+  # 'drf_spectacular',
+  'drf_yasg',
   
 	'fingerprints',
 ]
 
 REST_FRAMEWORK = {
 	'DEFAULT_PERMISSION_CLASSES': (
-		'rest_framework.permissions.IsAdminUser',
+		'rest_framework.permissions.AllowAny',
 	),
   'DEFAULT_AUTHENTICATION_CLASSES': (
 		'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -41,7 +43,8 @@ REST_FRAMEWORK = {
   'DEFAULT_PARSER_CLASSES': (
 		'rest_framework.parsers.JSONParser',
 		'rest_framework.parsers.MultiPartParser',
-	)
+	),
+  'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 MIDDLEWARE = [

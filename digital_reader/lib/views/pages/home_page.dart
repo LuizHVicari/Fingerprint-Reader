@@ -1,4 +1,4 @@
-import 'package:digital_reader/controlllers/current_widget_home_controller.dart';
+import 'package:digital_reader/controllers/current_widget_home_controller.dart';
 import 'package:digital_reader/views/widgets/bottom_bar.dart';
 import 'package:digital_reader/views/widgets/floating_gathering_button.dart';
 import 'package:digital_reader/views/widgets/gathers_list.dart';
