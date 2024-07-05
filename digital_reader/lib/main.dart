@@ -24,25 +24,12 @@ void main() async {
         Locale('pt')
       ],
       routes: {
-        '/': (context) => loginIsValid() ? HomePage() : LoginPage() ,
-        '/gathering': (context) => GatheringPage(camera: firstCamera,),
-        '/new_baby': (context) => const NewBabyPage(),
-        '/login' : (context) => const LoginPage()
+        '/': (context) => LoginController.instance.isLogged ? const HomePage() : const LoginPage() ,
+        '/gathering': (context) => LoginController.instance.isLogged ? GatheringPage(camera: firstCamera,) : const LoginPage(),
+        '/new_baby': (context) => LoginController.instance.isLogged ? const NewBabyPage() : const LoginPage(),
+        '/login' : (context) => LoginController.instance.isLogged ? const LoginPage() : const LoginPage()
       },
       theme: ThemeData.light(),
       )
   );
 }
-
-  bool loginIsValid() {
-    if (LoginController.instance.login == '') {
-      return false;
-    }
-    if (LoginController.instance.password == '') {
-      return false;
-    }
-    if (LoginController.instance.token == '') {
-      return false;
-    }
-    return true;
-  }

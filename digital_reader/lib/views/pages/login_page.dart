@@ -1,8 +1,10 @@
 import 'package:digital_reader/controllers/login_controller.dart';
+import 'package:digital_reader/models/auth_token.dart';
 import 'package:digital_reader/views/styles/elevated_button_style.dart';
 import 'package:digital_reader/views/styles/important_text_style.dart';
 import 'package:digital_reader/views/widgets/email_input.dart';
 import 'package:digital_reader/views/widgets/password_input.dart';
+import 'package:digital_reader/widgets_keys.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -16,6 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: WidgetsKeys.instance.logginScaffoldKey,
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -36,9 +39,9 @@ class _LoginPageState extends State<LoginPage> {
             ElevatedButton(
               style: elevatedButtonStyle(),
               onPressed: () {
-                // TODO add login logic
-                LoginController.instance.token = 'teste';
-                Navigator.of(context).popAndPushNamed('/');
+                LoginController.instance.getToken().then((AuthToken? token) {
+                  Navigator.of(context).popAndPushNamed('/');
+                });
               },
               child: const Text('Login')
             )
