@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:digital_reader/dio.dart';
 import 'package:digital_reader/models/baby_model.dart';
-import 'package:digital_reader/respositories/baby_intereface.dart';
+import 'package:digital_reader/respositories/baby_interface.dart';
 import 'package:dio/dio.dart';
 
 

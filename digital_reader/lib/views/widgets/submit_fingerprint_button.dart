@@ -1,3 +1,4 @@
+import 'package:digital_reader/controllers/gathering_controller.dart';
 import 'package:flutter/material.dart';
 
 class SubmitFingerprintButton extends StatelessWidget {
@@ -14,7 +15,7 @@ class SubmitFingerprintButton extends StatelessWidget {
         ),),
       icon: const Icon(Icons.send, color: Colors.white,),
       onPressed: () {
-        // TODO fluxo de submissão de formulário
+        GatheringController.instance.createGathering();
 
         showDialog(
           context: context,

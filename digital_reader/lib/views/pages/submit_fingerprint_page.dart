@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:digital_reader/controllers/baby_controller.dart';
+import 'package:digital_reader/controllers/gathering_controller.dart';
 import 'package:digital_reader/models/baby_model.dart';
 import 'package:digital_reader/views/styles/important_text_style.dart';
 import 'package:digital_reader/views/widgets/age_slider.dart';
@@ -37,6 +38,7 @@ class _DisplayPicturePageState extends State<DisplayPicturePage> {
         BabyController.instance.babyList = value!;
       });
     });
+    GatheringController.instance.image = widget.image;
 
     saveImage();
     widget.controller.pausePreview();
@@ -64,7 +66,7 @@ class _DisplayPicturePageState extends State<DisplayPicturePage> {
               Image.file(File(widget.image.path)),
               imageNotFitText(),
               ageText(context),
-              AgeSlider(),
+              const AgeSlider(),
               codeText(context),
               CodeInputRow(babies: BabyController.instance.babyList),
               const SizedBox(height: 30),

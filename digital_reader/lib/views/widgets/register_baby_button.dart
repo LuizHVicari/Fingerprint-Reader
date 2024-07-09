@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:digital_reader/controllers/baby_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -11,9 +9,6 @@ class RegisterBabyButton extends StatelessWidget {
     return FloatingActionButton.extended(
       onPressed: () {
         BabyController.instance.createBaby();
-        BabyController.instance.getBabies().then((value) {
-        BabyController.instance.babyList = value!;});
-        log('atualizado');
         Navigator.pop(context);
       },
       backgroundColor: Colors.teal,

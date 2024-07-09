@@ -19,7 +19,6 @@ Future<String> refreshToken() async {
       data: {'refresh':  refresh},
     );
     final access = response.data['access'];
-    print(access.toString());
     return access.toString();
   } else {
     throw Exception('Token is null');
