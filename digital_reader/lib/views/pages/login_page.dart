@@ -1,3 +1,4 @@
+import 'package:digital_reader/controllers/gathering_controller.dart';
 import 'package:digital_reader/controllers/login_controller.dart';
 import 'package:digital_reader/models/auth_token.dart';
 import 'package:digital_reader/views/styles/elevated_button_style.dart';
@@ -38,10 +39,13 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 20,),
             ElevatedButton(
               style: elevatedButtonStyle(),
-              onPressed: () {
-                LoginController.instance.getToken().then((AuthToken? token) {
-                  Navigator.of(context).popAndPushNamed('/');
-                });
+              onPressed: () async  {
+                await LoginController.instance.getToken();
+                GatheringController.instance.gatherings = await GatheringController.instance.getGatherings();
+                Navigator.of(context).popAndPushNamed('/');
+                // .then((AuthToken? token) {
+                //   Navigator.of(context).popAndPushNamed('/');
+                // });
               },
               child: const Text('Login')
             )

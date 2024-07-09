@@ -28,8 +28,8 @@ class GatheringRepository implements GatheringInterface {
   }
 
   @override
-  Future<List<GatheringModel>?> getGatherings() {
-    // TODO: implement getGathering
-    throw UnimplementedError();
+  Future<List<GatheringModel>?> getGatherings() async {
+    final response = await dio.get('/fingerprints/gatherings');
+    return response.data.map<GatheringModel>((e) => GatheringModel.fromJson(e)).toList();
   }
 }

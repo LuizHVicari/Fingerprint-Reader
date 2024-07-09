@@ -6,6 +6,7 @@ class GatheringController {
   XFile? image;
   int? baby;
   double months = 0.0;
+  late List<GatheringModel>? gatherings;
 
   final GatheringRepository _gatheringRepository = GatheringRepository();
 
@@ -18,6 +19,11 @@ class GatheringController {
       fingerprint: image!
     );
     return gathering;
+  }
+
+  Future<List<GatheringModel>?> getGatherings() async {
+    final gatherings = _gatheringRepository.getGatherings();
+    return gatherings;
   }
 
 }

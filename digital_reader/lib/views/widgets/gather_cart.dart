@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class GatherCart extends StatelessWidget {
   final String code;
@@ -59,6 +60,7 @@ class GatherCart extends StatelessWidget {
   }
 
   Column babyCodeDateColumn({required String code, required String date}) {
+    final DateFormat formatter = DateFormat('dd-MM-yyyy');
     return Column(
       mainAxisAlignment: MainAxisAlignment.center, 
       crossAxisAlignment: CrossAxisAlignment.start, 
@@ -71,7 +73,7 @@ class GatherCart extends StatelessWidget {
           ),
         ),
         Text(
-          'Coleta feita no dia $date',
+          'Coleta feita em ${formatter.format(DateTime.parse(date))}',
           style: TextStyle(
             color: Colors.white
           ),)
