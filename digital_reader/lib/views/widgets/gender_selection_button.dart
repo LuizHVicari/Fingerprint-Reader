@@ -1,4 +1,4 @@
-import 'package:digital_reader/controllers/new_baby_controller.dart';
+import 'package:digital_reader/controllers/baby_controller.dart';
 import 'package:digital_reader/views/styles/segmented_button_style.dart';
 import 'package:flutter/material.dart';
 
@@ -27,10 +27,10 @@ class _GenderSelectionButtonState extends State<GenderSelectionButton> {
           icon: Icon(Icons.female)
         )
       ], 
-      selected: <String>{NewBabyController.instance.gender},
+      selected: <String>{BabyController.instance.gender},
       onSelectionChanged: (value) {
         setState(() {
-          NewBabyController.instance.gender = value.first;
+          BabyController.instance.gender = value.first;
         });
       },
     );

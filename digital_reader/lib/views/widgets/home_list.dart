@@ -24,7 +24,7 @@ class _HomeListState extends State<HomeList> {
                 fontSize: 30
               )),
             Text(
-              'Esse aplicativo tem como objetivo facilitar a coleta de dados para o projeto de pesquisa InfantID, como as digitais são um dados sensíveis, é necessário manter a seguraça do sistema. Dessa forma, o uso desse aplicativo ou acesso dos dados produzidos é estritamente para os envolvidos no projeto.',
+              'Esse aplicativo tem como objetivo facilitar a coleta de dados para o projeto de pesquisa ..., como as digitais são dados sensíveis, é necessário manter a seguraça do sistema. Dessa forma, o uso desse aplicativo ou acesso dos dados produzidos é estritamente para os envolvidos no projeto.',
               textAlign: TextAlign.justify,
             )
           ],

@@ -1,8 +1,10 @@
+import 'package:digital_reader/controllers/baby_controller.dart';
+import 'package:digital_reader/models/baby_model.dart';
 import 'package:flutter/material.dart';
 
 class CodeInputRow extends StatelessWidget {
-  const CodeInputRow({super.key});
-  final List<String> ids = const ['item 1', 'item 2', 'item 3', 'item 4'];
+  final List<BabyModel>? babies;
+  const CodeInputRow({super.key, required this.babies});
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +15,10 @@ class CodeInputRow extends StatelessWidget {
           hintText: 'Código do bebê',
           enableFilter: true,
           enableSearch: true,
-          dropdownMenuEntries: ids.map((map) {
+          dropdownMenuEntries: BabyController.instance.babyList.map((baby) {
             return DropdownMenuEntry(
-              value: map,
-              label: map
+              value: baby.id,
+              label: baby.code!
             );
           }).toList()
         ),

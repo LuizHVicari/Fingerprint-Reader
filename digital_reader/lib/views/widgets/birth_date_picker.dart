@@ -1,4 +1,4 @@
-import 'package:digital_reader/controllers/new_baby_controller.dart';
+import 'package:digital_reader/controllers/baby_controller.dart';
 import 'package:flutter/material.dart';
 
 class BirthDatePicker extends StatefulWidget {
@@ -9,14 +9,14 @@ class BirthDatePicker extends StatefulWidget {
 }
 
 class _BirthDatePickerState extends State<BirthDatePicker> {
-  
+  TextEditingController dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 8, right: 8),
       child: TextField(
-        controller: NewBabyController.instance.dateController,
+        controller: dateController,
         decoration: const InputDecoration(
           floatingLabelStyle: TextStyle(
             color: Colors.teal
@@ -51,7 +51,8 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
 
     if (date != null) {
       setState(() {
-        NewBabyController.instance.dateController.text = date.toString().split(" ")[0];
+        dateController.text = date.toString().split(" ")[0];
+        BabyController.instance.birthDate = date.toString().split(" ")[0];
       });
     }
   }

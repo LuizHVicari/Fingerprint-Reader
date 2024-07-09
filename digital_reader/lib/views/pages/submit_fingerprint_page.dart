@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
+import 'package:digital_reader/controllers/baby_controller.dart';
+import 'package:digital_reader/models/baby_model.dart';
 import 'package:digital_reader/views/styles/important_text_style.dart';
 import 'package:digital_reader/views/widgets/age_slider.dart';
 import 'package:digital_reader/views/widgets/code_input_row.dart';
@@ -19,7 +21,7 @@ class DisplayPicturePage extends StatefulWidget {
 }
 
 class _DisplayPicturePageState extends State<DisplayPicturePage> {
-  List<String> ids = ['item 1', 'item 2', 'item 3', 'item 4'];
+  late List<BabyModel> babyList = [];
   String selectedId = '';
   
   void saveImage() async {
@@ -30,6 +32,12 @@ class _DisplayPicturePageState extends State<DisplayPicturePage> {
   @override
   void initState() {
     super.initState();
+    BabyController.instance.getBabies().then((value) {
+      setState(() {
+        BabyController.instance.babyList = value!;
+      });
+    });
+
     saveImage();
     widget.controller.pausePreview();
   }
@@ -58,7 +66,7 @@ class _DisplayPicturePageState extends State<DisplayPicturePage> {
               ageText(context),
               AgeSlider(),
               codeText(context),
-              const CodeInputRow(),
+              CodeInputRow(babies: BabyController.instance.babyList),
               const SizedBox(height: 30),
               const SubmitFingerprintButton(),
               const SizedBox(height: 20)

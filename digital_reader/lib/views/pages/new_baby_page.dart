@@ -5,17 +5,8 @@ import 'package:digital_reader/views/widgets/register_baby_button.dart';
 import 'package:digital_reader/views/widgets/top_bar.dart';
 import 'package:flutter/material.dart';
 
-class NewBabyPage extends StatefulWidget {
+class NewBabyPage extends StatelessWidget {
   const NewBabyPage({super.key});
-
-  @override
-  State<NewBabyPage> createState() => _NewBabyPageState();
-}
-
-class _NewBabyPageState extends State<NewBabyPage> {
-  String code = '';
-  String gender = 'M';
-  
 
   @override
   Widget build(BuildContext context) {

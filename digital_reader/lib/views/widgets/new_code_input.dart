@@ -1,4 +1,4 @@
-import 'package:digital_reader/controllers/new_baby_controller.dart';
+import 'package:digital_reader/controllers/baby_controller.dart';
 import 'package:digital_reader/views/styles/input_style.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +13,7 @@ class NewCodeInput extends StatelessWidget {
         keyboardType: TextInputType.number,
         decoration: inputStyle(labelText: 'Código do Bebê'),
         onChanged: (value) {
-          NewBabyController.instance.code = value;
+          BabyController.instance.code = value;
         },
       ),
     );
